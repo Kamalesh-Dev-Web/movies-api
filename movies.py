@@ -33,6 +33,10 @@ async def updatemovie(movie:UpdateMovie,movie_id:PydanticObjectId) -> Movie:
        result.year=movie.year
     if movie.rating!=None:
        result.rating=movie.rating
+    if movie.image_url!=None:
+       result.image_url=movie.image_url
+    if movie.thumbnail!=None:
+       result.thumbnail=movie.thumbnail
     if movie.description!=None:
        result.description=movie.description
     if movie.genre!=None:

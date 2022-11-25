@@ -6,6 +6,8 @@ from typing import Union,Optional
 class Movie(Document):
     title:Union[str, None]=Field(max_length=400)
     rating:Union[str, None]=Field(max_length=400)
+    image_url:Union[str, None]=Field(max_length=400)
+    thumbnail:Union[str, None]=Field(max_length=400)
     year:Union[int, None]
     description:Union[str, None]=Field(max_length=400)
     genre:Union[list[str], None]
@@ -26,5 +28,7 @@ class Movie(Document):
 class UpdateMovie(BaseModel):
     rating:Optional[str]=None
     year:Optional[int]=None
+    image_url:Optional[str]=None
+    thumbnail:Optional[str]=None
     description:Optional[str]=None
     genre:Optional[list[str]]=None
