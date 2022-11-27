@@ -1,14 +1,19 @@
 from fastapi import APIRouter,HTTPException
 from models import Movie,UpdateMovie
-from typing import List
+from typing import List,Union
 from beanie import PydanticObjectId
 
 movies_router=APIRouter()
 
 @movies_router.get('/')
-async def getallmovies() -> List[Movie]:
-    movies= await Movie.find_all().to_list()
-    return movies
+async def getallmovies(title:Union[str, None] = None) -> List[Movie]:
+    searched_results= await Movie.find(Movie.title==title).to_list()
+    if title==None:
+       movies= await Movie.find_all().to_list()
+       return movies
+    else: return searched_results
+       
+   
 
 @movies_router.post('/')
 async def createmovie(movie:Movie):
